@@ -9,15 +9,18 @@ import { CountryListComponent } from './Components/country-list/country-list.com
 import { CountrySingleComponent } from './Components/country-single/country-single.component';
 import { authGuard } from './Authenticate/auth.guard';
 import { exampleResolverResolver } from './Resolver/example-resolver.resolver';
+import { CountrySingleEditComponent } from './Components/country-single-edit/country-single-edit.component';
 enum TheRoutes{
     BASE='',
     ADDRESS="address",
     COUNTRY="country",
-    PERSON="person"
+    PERSON="person",
+    HOME="home",
 }
 
   export const routes: Routes = [
-    { path: TheRoutes.BASE, component: HomeComponent,resolve:{
+    { path: TheRoutes.BASE, redirectTo:TheRoutes.HOME,pathMatch:'full'},
+    {path:TheRoutes.HOME,component:HomeComponent,resolve:{
         userData:exampleResolverResolver,
     }},
     { path: TheRoutes.PERSON, component: PersonComponent },
@@ -25,10 +28,16 @@ enum TheRoutes{
         children:[
             {path:'add',component:CountryAddComponent},
             {path:'list',
-            canActivate:[authGuard],
+            canActivate:[],
             children:[
-                    {path:'',loadComponent:()=>import('./Components/country-list/country-list.component').then((m)=>m.CountryListComponent)},
-                    {path:':id',component:CountrySingleComponent}
+                    {path:'',component:CountryListComponent},
+                    {path:':id',
+                        children:[
+                            {path:'',component:CountryListComponent},
+                            {path:'edit',component:CountrySingleEditComponent}
+                           
+                        ]
+                    }
                 ]
             }
         // path list ....

@@ -1,14 +1,14 @@
 <h1>Angular Router App</h1>
 <nav>
   <ul>
-    <li><a href="country/list/1" >First Component</a></li>
-    <li><a href="country/list" >thelist</a></li>
+    <li><a [routerLink]="['country/list',1]" >country/list/1</a></li>
+    <li><a [routerLink]="['country/list',1,'edit']" >country/list/1/edit</a></li>
 
-    <li><a routerLink="/Introduction" >First Component</a></li>
-    <li><a routerLink="/Getting started" >Second Component</a></li>
-    <li><a routerLink="/Understanding Angular" >3th Component</a></li>
-    <li><a routerLink="/Developer guides" >4th Component</a></li>
-    <li><a routerLink="/Best practies" >5th Component</a></li>
+    <li><a routerLink="country/list"  >country/list</a></li>
+    
+    <li><a href="person">person</a></li>
+    <li><a routerLink="/">home</a></li>
+  
   </ul>
  
 </nav>

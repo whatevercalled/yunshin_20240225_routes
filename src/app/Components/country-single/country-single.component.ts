@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-country-single',
   standalone: true,
@@ -8,5 +8,10 @@ import { Input } from '@angular/core';
   styleUrl: './country-single.component.scss'
 })
 export class CountrySingleComponent {
-    @Input('id') singleId='';
+    id:number|null=null;
+    constructor(private activedRoute:ActivatedRoute){
+      this.activedRoute.params.subscribe(params=>{
+        this.id=params['id'];  
+      })
+    }
 }
