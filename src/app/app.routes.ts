@@ -8,6 +8,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { CountryListComponent } from './Components/country-list/country-list.component';
 import { CountrySingleComponent } from './Components/country-single/country-single.component';
 import { authGuard } from './Authenticate/auth.guard';
+import { exampleResolverResolver } from './Resolver/example-resolver.resolver';
 enum TheRoutes{
     BASE='',
     ADDRESS="address",
@@ -16,7 +17,9 @@ enum TheRoutes{
 }
 
   export const routes: Routes = [
-    { path: TheRoutes.BASE, component: HomeComponent},
+    { path: TheRoutes.BASE, component: HomeComponent,resolve:{
+        userData:exampleResolverResolver,
+    }},
     { path: TheRoutes.PERSON, component: PersonComponent },
     { path: TheRoutes.COUNTRY, 
         children:[
