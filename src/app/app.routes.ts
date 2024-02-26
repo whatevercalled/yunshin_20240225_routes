@@ -27,7 +27,7 @@ enum TheRoutes{
             {path:'list',
             canActivate:[authGuard],
             children:[
-                    {path:'',component:CountryListComponent},
+                    {path:'',loadComponent:()=>import('./Components/country-list/country-list.component').then((m)=>m.CountryListComponent)},
                     {path:':id',component:CountrySingleComponent}
                 ]
             }
